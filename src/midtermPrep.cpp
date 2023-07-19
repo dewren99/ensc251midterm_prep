@@ -191,8 +191,9 @@ int main()
 		std::cout << "root_dir2.print_traverse():" << std::endl;
 		root_dir2.print_traverse(); // not in table
 
+		std::cout << "assignment being made" << std::endl;
 		root_dir2 = *root_dir1P; // copy is made for root_dir1P before assignment overload since we pass it by value
-		// old root_dir2 is destroyed
+		// old root_dir2 is destroyed, therefore destructors are called
 
 		std::cout << "root_dir2.print_traverse():" << std::endl;
 		root_dir2.print_traverse(); // not in table
