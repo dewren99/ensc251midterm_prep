@@ -23,10 +23,35 @@ namespace ensc251 {
 
 	protected:
 		TreeNodeSPVect childSPVector;
+		/**
+		 * // declares action_func as a type representing a pointer to a TreeNode member function that takes no arguments (void) and returns void.
+		 * class TreeNode {
+			public:
+				void someFunction(void) {
+					// some code
+				}
+			};
+
+			int main() {
+				action_func ptr = &TreeNode::someFunction; // assign the function's address to ptr
+				TreeNode obj;
+				(obj.*ptr)(); // call the function
+				return 0;
+			}
+		 *
+		 */
 		typedef void (TreeNode::*action_func)(void);
 		typedef void (TreeNode::*traverse_func)(void);
 
 	public:
+		/**
+		 * Make the destructor virtual whenever your class is polymorphic
+		 * A base class destructor should be either public and virtual, or protected and nonvirtual.
+		 *
+		 * If your base class destructor is virtual then objects will be destructed in a order(firstly derived object then base ).
+		 * If your base class destructor is NOT virtual then only base class object could get deleted So there will be memory
+		 * leak for derived object.
+		 */
 		virtual ~TreeNode() {
 			// do not modify this insertion on OUT
 			std::cout << "Destroying TreeNode with " << childSPVector.size() << " children."<< std::endl;
@@ -49,6 +74,17 @@ namespace ensc251 {
 			swap(first.childSPVector, second.childSPVector);
 		}
 
+		/**
+		 * // copy assignment
+		 * T& operator=(const T& other)
+		 *
+		 * // move assignment
+		 * T& operator=(T&& other) noexcept
+		 *
+		 * // copy assignment (copy-and-swap idiom)
+		 * T& T::operator=(T other) noexcept // call copy or move constructor to construct other
+		 *
+		 */
 		TreeNode& operator = (TreeNode other) // note: argument passed by value, copy made!
 		{
 			swap(*this, other); // swap *this with other
@@ -137,16 +173,31 @@ public:
 
 int main()
 {
-	auto root_dir1P = std::make_shared<Directory>("Dir1");
+	std::cout << "START" << std::endl;
+	auto root_dir1P = std::make_shared<Directory>("Dir1"); // can be std::make_unique<Directory>
 	{
+		// Local variable declared here, it will call its destructors at the end of the block
 		Directory root_dir2(*root_dir1P);
 		root_dir2.set_name("Dir3");
 		root_dir1P->add_childP(std::make_shared<File>("File1"));
 
+		root_dir2.add_childP(std::make_shared<File>("File4"));
+
+		root_dir1P->add_childP(std::make_shared<File>("File5"));
+
+		std::cout << "root_dir1P->print_traverse():" << std::endl;
 		root_dir1P->print_traverse();
+
+		std::cout << "root_dir2.print_traverse():" << std::endl;
 		root_dir2.print_traverse(); // not in table
 
-		root_dir2 = *root_dir1P;
+		root_dir2 = *root_dir1P; // copy is made for root_dir1P before assignment overload since we pass it by value
+		// old root_dir2 is destroyed
+
+		std::cout << "root_dir2.print_traverse():" << std::endl;
+		root_dir2.print_traverse(); // not in table
 	}
+	std::cout << "root_dir1P still valid after curly brace scope ends and root_dir2 destructor is called:" << std::endl;
+	root_dir1P->print_traverse();
 	return 0;
 }

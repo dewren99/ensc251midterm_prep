@@ -38,7 +38,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := midterm-prep
+BUILD_ARTIFACT_NAME := ensc251midterm_prep
 BUILD_ARTIFACT_EXTENSION :=
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -49,19 +49,19 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 all: main-build
 
 # Main-build Target
-main-build: midterm-prep
+main-build: ensc251midterm_prep
 
 # Tool invocations
-midterm-prep: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+ensc251midterm_prep: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/usr/lib/x86_64-linux-gnu" -o "midterm-prep" $(OBJS) $(USER_OBJS) $(LIBS) -l"boost_unit_test_framework" -l"boost_system" -l"boost_filesystem"
+	g++ -L"/usr/lib/x86_64-linux-gnu" -o "ensc251midterm_prep" $(OBJS) $(USER_OBJS) $(LIBS) -l"boost_unit_test_framework" -l"boost_system" -l"boost_filesystem"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) midterm-prep
+	-$(RM) ensc251midterm_prep
 	-@echo ' '
 
 .PHONY: all clean dependents main-build
