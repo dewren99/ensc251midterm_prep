@@ -1,0 +1,25 @@
+START
+root_dir1P->print_traverse():
+             File1	F
+             File5	F
+              Dir1	| 2
+root_dir2.print_traverse():
+             File4	F
+              Dir3	| 1
+assignment being made
+Destroying TreeNode with 1 children.
+Destroying TreeNode with 0 children.
+root_dir2.print_traverse():
+             File1	F
+             File5	F
+              Dir1	| 2
+Destroying TreeNode with 2 children.
+Destroying TreeNode with 0 children.
+Destroying TreeNode with 0 children.
+root_dir1P still valid after curly brace scope ends and root_dir2 destructor is called:
+             File1	F
+             File5	F
+              Dir1	| 2
+Destroying TreeNode with 2 children.
+Destroying TreeNode with 0 children.
+Destroying TreeNode with 0 children.
