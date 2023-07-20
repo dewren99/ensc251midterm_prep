@@ -136,7 +136,7 @@ public:
 	void set_name(const std::string_view& name){ m_name = name; }
 	const std::string & get_name() { return m_name; }
 
-	virtual void print_action() = 0;
+	virtual void print_action() = 0; // pure virtual function, makes this class abstract and non-instantiable
 
 	void print_traverse()
 	{
