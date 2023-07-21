@@ -1,17 +1,3 @@
-// This is a source version of the cpp cheatsheet available here. Note that this does not compile but may have better
-// color-highlight than the markdown version in an editor.
-//
-// Github version available here: https://github.com/mortennobel/cpp-cheatsheet
-
-// # C++ QUICK REFERENCE / C++ CHEATSHEET
-// Based on <a href="http://www.pa.msu.edu/~duxbury/courses/phy480/Cpp_refcard.pdf">Phillip M. Duxbury's C++ Cheatsheet</a> and edited by Morten Nobel-Jørgensen.
-// The cheatsheet focus is both on the language as well as common classes from the standard library.
-// C++11 additions is inspired by <a href="https://isocpp.org/blog/2012/12/c11-a-cheat-sheet-alex-sinyakov">ISOCPP.org C++11 Cheatsheet</a>).
-//
-// The goal is to give a concise overview of basic, modern C++ (C++14).
-//
-// The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any comments and feedback are appreciated.
-
 // ## Preprocessor
 
 // Comment to end of line
